@@ -21,7 +21,7 @@ while True:
     for (x,y,w,h) in faces:
         cv2.rectangle(frame,pt1 = (x,y),pt2 = (x + w,y + h),color = (255,0,0),thickness = 2)
     for (x,y,w,h) in eyes:
-        cv2.rectangle(frame,pt1 = (x,y),pt2 = (x + w,y + h),color = (0,255,0),thickness = 2)
+        #cv2.rectangle(frame,pt1 = (x,y),pt2 = (x + w,y + h),color = (0,255,0),thickness = 2)
         eye = frame[y:y+h,x:x+w]
         eye = cv2.resize(eye,(80,80))
         eye = eye/255
@@ -34,12 +34,12 @@ while True:
             score = score + 1
             if(score > 2):
                 cv2.putText(frame,'Closed !!!!',(10,height-20),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=1,color = (0,0,255),thickness = 2,lineType=cv2.LINE_AA)
-            if(score > 10):
+            if(score > 5):
                 sound.play()
                 # cv2.putText(frame,'alert !!!!',(105,height-20),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=1,color = (255,0,255),thickness = 2,lineType=cv2.LINE_AA)
         else:
             cv2.putText(frame,'Open :)',(10,height-20),fontFace=cv2.FONT_HERSHEY_COMPLEX_SMALL,fontScale=1,color = (0,255,0),thickness = 2,lineType=cv2.LINE_AA)
-            if(score == 0):
+            if(score <= 0):
                 score = 0
             else:
                 score = score - 1
